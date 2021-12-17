@@ -12,12 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import os
-import sys
-
-from django.core.management import execute_from_command_line
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE",
-                          "venus_dashboard.dashboard.tests.settings")
-    execute_from_command_line(sys.argv)
+    pass

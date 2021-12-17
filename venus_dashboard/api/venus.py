@@ -15,9 +15,9 @@
 import logging
 
 from horizon.utils.memoized import memoized
-from openstack_dashboard.api import base
 from keystoneauth1.identity.generic.token import Token
 from keystoneauth1.session import Session
+from openstack_dashboard.api import base
 from venusclient.v1 import client
 
 LOG = logging.getLogger(__name__)

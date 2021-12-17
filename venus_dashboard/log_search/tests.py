@@ -20,14 +20,18 @@
 # from django.utils import timezone
 #
 # from openstack_dashboard import api
-# from openstack_dashboard.test import helpers as test
+from openstack_dashboard.test import helpers as test
 # from openstack_dashboard import usage
 #
 #
 # INDEX_URL = reverse('horizon:project:overview:index')
 #
 #
-# class UsageViewTests(test.TestCase):
+
+
+class UsageViewTests(test.TestCase):
+
+    pass
 #
 #     @test.create_mocks({
 #         api.nova: ('usage_get',),
@@ -82,7 +86,8 @@
 #         if overrides:
 #             for key, value in overrides.items():
 #                 if 'quota' in value:
-#                     usages_data.add_quota(api.base.Quota(key, value['quota']))
+#                     usages_data.add_quota(api.base.Quota(key,
+#                                                          value['quota']))
 #                 if 'used' in value:
 #                     usages_data.tally(key, value['used'])
 #         self.mock_tenant_quota_usages.return_value = usages_data
@@ -270,7 +275,8 @@
 #
 #     def test_usage_charts_created(self):
 #         res = self._test_usage_charts(
-#             quota_usage_overrides={'floatingip': {'quota': -1, 'used': 1234}})
+#             quota_usage_overrides={
+#                 'floatingip': {'quota': -1, 'used': 1234}})
 #         self.assertIn('charts', res.context)
 #         charts = res.context['charts']
 #
@@ -306,7 +312,8 @@
 #
 #     def test_disallowed_network_chart(self):
 #         res = self._test_usage_charts(
-#             quota_usage_overrides={'floatingip': {'quota': -1, 'used': 1234}},
+#             quota_usage_overrides={
+#                 'floatingip': {'quota': -1, 'used': 1234}},
 #             quota_extension_support=False)
 #         charts = res.context['charts']
 #         self.assertEqual(['Compute', 'Volume'],

@@ -13,7 +13,6 @@
 # limitations under the License.
 
 from django.views import generic
-import json
 import logging
 from openstack_dashboard.api.rest import urls
 from openstack_dashboard.api.rest import utils as rest_utils

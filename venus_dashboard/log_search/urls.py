@@ -14,7 +14,6 @@
 
 from django.conf.urls import url
 
-import venus_dashboard.api.venus_rest_api
 from venus_dashboard.log_search import views
 
 urlpatterns = [
