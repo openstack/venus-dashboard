@@ -21,4 +21,4 @@ XStatic-lodash>=4.16.4.1 # MIT License
 XStatic-moment>=2.8.4.1 # MIT License
 XStatic-Moment-Timezone>=0.5.22.0 # MIT License
 XStatic-smart-table>=1.4.13.2 # MIT License
-python-venusclient>=2.5.0  # Apache-2.
+# python-venusclient>=2.5.0  # Apache-2.0
