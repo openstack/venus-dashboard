@@ -2,8 +2,8 @@
   'use strict';
 
   angular
-        .module('horizon.dashboard.admin.venus')
-        .controller('LogSearchController', LogSearchController);
+      .module('horizon.dashboard.admin.venus')
+      .controller('LogSearchController', LogSearchController);
 
   LogSearchController.$inject = ['$scope', 'venusSrv'];
 
