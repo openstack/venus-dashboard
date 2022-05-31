@@ -22,6 +22,7 @@
                 </div>
             </form>
         </div>
+
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -51,5 +52,8 @@
                 </tr>
             </tbody>
         </table>
+        <div>
+            <ul uib-pagination total-items="total" ng-model="model.page_num" items-per-page="model.page_size" max-size="5" ng-change="getData()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+        </div>
     </div>
 </div>

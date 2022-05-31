@@ -13,9 +13,10 @@
       start_time: new Date(),
       end_time: new Date(),
       condition: 'module_name',
-      page_size: 20,
+      page_size: horizon.cookies.get('API_RESULT_PAGE_SIZE') || 20,
       page_num: 1
     };
+    $scope.total = 0;
     $scope.tableData = [];
 
     $scope.getData = function() {
@@ -29,6 +30,7 @@
         $scope.tableData = [];
         if (res.data.hasOwnProperty('data')) {
           $scope.tableData = res.data.data.values;
+          $scope.total = res.data.data.total;
         }
       });
     };
