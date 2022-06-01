@@ -1,6 +1,6 @@
 <div ng-controller="LogSearchController as vm">
-    <div class="row">
-        <div class="col-xs-12">
+    <div>
+        <div>
             <form class="form-inline pull-right">
                 <div class="form-group">
                     <input type="datetime-local" class="form-control" ng-model="model.start_time">
@@ -22,9 +22,12 @@
                 </div>
             </form>
         </div>
-
-        <table class="table table-hover">
-            <thead>
+        <div>
+            <svg id="svg" style="width: 100%; height: 300px;"></svg>
+        </div>
+        <div>
+            <table class="table table-striped">
+                <thead>
                 <tr>
                     <th>时间</th>
                     <th>主机</th>
@@ -35,8 +38,8 @@
                     <th>用户ID</th>
                     <th>描述</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr class="text-center" ng-if="tableData.length === 0">
                     <td colspan="8">暂无数据。</td>
                 </tr>
@@ -50,9 +53,8 @@
                     <td>{$ item.user_id $}</td>
                     <td>{$ item.desc $}</td>
                 </tr>
-            </tbody>
-        </table>
-        <div>
+                </tbody>
+            </table>
             <ul uib-pagination total-items="total" ng-model="model.page_num" items-per-page="model.page_size" max-size="5" ng-change="getData()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
         </div>
     </div>
