@@ -12,11 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.utils.translation import ugettext_lazy as _
+from django.conf.urls import url
 
-import horizon
+from venus_dashboard.log_search_slog import views
 
-
-class LogSearch(horizon.Panel):
-    name = _("Log Search")
-    slug = 'log_search'
+urlpatterns = [
+    url(r'^$', views.IndexView.as_view(), name='index'),
+]

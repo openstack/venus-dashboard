@@ -17,6 +17,6 @@ from django.utils.translation import ugettext_lazy as _
 import horizon
 
 
-class LogSearch(horizon.Panel):
-    name = _("Log Search")
-    slug = 'log_search'
+class LogSearchSLog(horizon.Panel):
+    name = _("Log Search SLog")
+    slug = 'log_search_slog'

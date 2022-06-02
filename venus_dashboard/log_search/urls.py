@@ -15,8 +15,7 @@
 from django.conf.urls import url
 
 from venus_dashboard.log_search import views
-import venus_dashboard.api.venus_rest_api  #noqa
 
 urlpatterns = [
-    url(r'^log_search$', views.LogSearch.as_view(), name='index'),
+    url(r'^$', views.IndexView.as_view(), name='index'),
 ]

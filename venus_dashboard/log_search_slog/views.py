@@ -12,11 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.utils.translation import ugettext_lazy as _
 
-import horizon
+from horizon import views
 
 
-class LogSearch(horizon.Panel):
-    name = _("Log Search")
-    slug = 'log_search'
+class IndexView(views.APIView):
+    template_name = 'log_search_slog/index.html'
+
+    def get_data(self, request, context, *args, **kwargs):
+        return context

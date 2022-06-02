@@ -16,7 +16,7 @@
 from horizon import views
 
 
-class LogSearch(views.APIView):
+class IndexView(views.APIView):
     template_name = 'log_search/index.html'
 
     def get_data(self, request, context, *args, **kwargs):
