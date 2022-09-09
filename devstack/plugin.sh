@@ -10,23 +10,6 @@ function configure_venus_dashboard {
     cp -a ${VENUS_DASHBOARD_DIR}/venus_dashboard/enabled/* ${HORIZON_DIR}/openstack_dashboard/local/enabled/
 }
 
-function install_venus_client {
-    VENUSCLINET_REPO="https://review.opendev.org/openstack/python-venusclient"
-    VENUSCLIENT_BRANCH="master"
-    VENUSCLIENT_DIR="${VENUS_DASHBOARD_DIR}/python-venusclient"
-
-    if [[ ! -d $VENUSCLIENT_DIR ]]; then
-        git_clone $VENUSCLINET_REPO $VENUSCLIENT_DIR $VENUSCLIENT_BRANCH
-
-        mv ${VENUSCLIENT_DIR}/venusclient ${VENUS_DASHBOARD_DIR}/venusclient
-        rm -rf ${VENUSCLIENT_DIR}
-    fi
-}
-
-function remove_venus_client {
-    rm -rf ${VENUS_DASHBOARD_DIR}/venusclient
-}
-
 function init_venus_dashboard {
     $PYTHON ${DEST}/horizon/manage.py collectstatic --noinput
     $PYTHON ${DEST}/horizon/manage.py compress --force
@@ -44,7 +27,6 @@ if is_service_enabled venus-dashboard; then
         # Perform installation of service source
         echo_summary "Installing Venus Dashboard"
         install_venus_dashboard
-        install_venus_client
 
      elif [[ "$1" == "stack" && "$2" == "post-config" ]]; then
         # Configure after the other layer 1 and 2 services have been configured
@@ -60,7 +42,8 @@ if is_service_enabled venus-dashboard; then
 
     if [[ "$1" == "unstack" ]]; then
         # Shut down venus-dashboard services
-        remove_venus_client
+        # no-op
+        :
     fi
 
     if [[ "$1" == "clean" ]]; then
