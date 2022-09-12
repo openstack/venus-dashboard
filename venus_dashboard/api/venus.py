@@ -20,7 +20,6 @@ from keystoneauth1.identity.generic.token import Token
 from keystoneauth1.session import Session
 from venusclient.v1 import client
 
-
 LOG = logging.getLogger(__name__)
 
 
@@ -43,7 +42,7 @@ def log_storage_days(request):
 
 
 def logs(request, start_time, end_time, page_size, page_num):
-    return venusclient(request).search.get_logs(start_time=start_time,
-                                                end_time=end_time,
-                                                page_size=page_size,
-                                                page_num=page_num)
+    return venusclient(request).search.get_log(start_time=start_time,
+                                               end_time=end_time,
+                                               page_size=page_size,
+                                               page_num=page_num)

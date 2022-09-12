@@ -24,7 +24,7 @@ LOG = logging.getLogger(__name__)
 
 @urls.register
 class LogStorageDays(generic.View):
-    url_regex = r'venus/log_storage_days/$'
+    url_regex = r'venus/log_storage_days$'
 
     @rest_utils.ajax()
     def get(self, request):
@@ -33,7 +33,7 @@ class LogStorageDays(generic.View):
 
 @urls.register
 class Logs(generic.View):
-    url_regex = r'venus/logs$'
+    url_regex = r'venus/search/logs$'
 
     @rest_utils.ajax()
     def get(self, request):

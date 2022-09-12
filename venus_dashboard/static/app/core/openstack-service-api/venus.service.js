@@ -18,17 +18,17 @@
 
       return apiService.get(url)
           .catch(function () {
-            // toastService.add('error', gettext('Unable to fetch the venus log storage days.'));
+            toastService.add('error', gettext('Unable to fetch the venus log storage days.'));
           });
     }
 
     function getLogs(config) {
       config = config || {};
-      var url = '/api/venus/logs';
+      var url = '/api/venus/search/logs';
 
       return apiService.get(url, config)
           .catch(function () {
-            // toastService.add('error', gettext('Unable to fetch the venus logs.'));
+            toastService.add('error', gettext('Unable to fetch the venus logs.'));
           });
     }
 
