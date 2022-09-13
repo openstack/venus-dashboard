@@ -55,7 +55,7 @@
       var width = svg.node().getBoundingClientRect().width - padding.left - padding.right,
           height = svg.node().getBoundingClientRect().height - padding.top - padding.bottom,
           barHotZoneWidth = width / data.length,
-          barHotZoneHighlight = '#ff0000',
+          barHotZoneHighlight = '#ddd',
           barWidth = barHotZoneWidth - barGap,
           barBgColor = '#007ede';
 
@@ -93,32 +93,44 @@
           .attr("class", "axis")
           .call(yAxis);
 
-      var barG = svg.append('g')
+      var barContainer = svg.append('g')
           .attr('transform', 'translate('+padding.left+', '+padding.top+')');
 
-      var bars = barG.selectAll('g')
+      var bars = barContainer.selectAll('g')
           .data(data);
 
       // enter
-      bars.enter()
-          .append('g')
-          .append('rect')
-          .attr('fill', barBgColor)
-          .attr('x', (d, i) => xScale(i))
-          .attr('y', (d) => yScale(d.doc_count))
-          .attr('width', barWidth)
-          .attr('height', (d) => yScale(d.doc_count));
+      var barG = bars.enter()
+          .append('g');
 
-      // update
-      bars.select('rect')
+      var barHotZone = barG.append('rect')
+          .attr('class', 'hotzone')
           .attr('x', (d, i) => xScale(i))
+          .attr('y', 0)
+          .attr('width', barHotZoneWidth)
+          .attr('height', height)
+          .attr('fill', 'none')
+          .attr('pointer-events', 'all');
+
+      barG.append('rect')
+          .attr('fill', barBgColor)
+          .attr('x', (d, i) => xScale(i) + barGap / 2)
           .attr('y', (d) => yScale(d.doc_count))
           .attr('width', barWidth)
           .attr('height', (d) => height - yScale(d.doc_count));
 
-      // exit
-      bars.exit()
-          .remove();
+      barG.append('text')
+          .attr('x', (d, i) => xScale(i) + barHotZoneWidth / 2)
+          .attr('y', (d) => yScale(d.doc_count) - 5)
+          .attr('text-anchor', 'middle')
+          .attr('font-size', 12)
+          .text((d) => d.doc_count);
+
+      barG.on('mouseenter', function () {
+          d3.select(this).select('.hotzone').attr('fill', barHotZoneHighlight);
+      }).on('mouseleave', function() {
+          d3.select(this).select('.hotzone').attr('fill', 'none');
+      });
     };
 
     function init() {
