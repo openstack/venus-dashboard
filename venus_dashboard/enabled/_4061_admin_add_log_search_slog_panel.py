@@ -15,3 +15,4 @@ ADD_ANGULAR_MODULES = ['horizon.dashboard.admin.venus']
 # ADD_JS_FILES = ['dashboard/admin/venus.module.js']
 
 AUTO_DISCOVER_STATIC_FILES = True
+

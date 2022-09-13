@@ -34,42 +34,70 @@
           $scope.chartsData = res.data.data_stats.count;
           $scope.total = res.data.data.total;
         }
-        $scope.updateCharts();
+        $scope.updateChart();
       });
     };
 
-    $scope.updateCharts = function () {
+    $scope.updateChart = function () {
+      var data = $scope.chartsData;
+
+      var padding = {
+        top: 50,
+        right: 50,
+        bottom: 50,
+        left: 100
+      };
+
+      var barGap = 2;
+
       var svg = d3.select('#svg');
 
-      var width = svg.node().getBoundingClientRect().width,
-          height = svg.node().getBoundingClientRect().height,
-          barHotZoneWidth = width / $scope.chartsData.length,
+      var width = svg.node().getBoundingClientRect().width - padding.left - padding.right,
+          height = svg.node().getBoundingClientRect().height - padding.top - padding.bottom,
+          barHotZoneWidth = width / data.length,
           barHotZoneHighlight = '#ff0000',
-          barWidth = barHotZoneWidth - 2,
+          barWidth = barHotZoneWidth - barGap,
           barBgColor = '#007ede';
 
       var xScale = d3.scale.linear()
-          .domain([0, $scope.chartsData.length - 1])
+          .domain([0, data.length - 1])
           .range([0, width]);
 
-      var hScale = d3.scale.linear()
-          .domain(d3.extent($scope.chartsData, d => d.doc_count))
-          .range([0, height]);
+      var yScale = d3.scale.linear()
+          .domain(d3.extent(data, d => d.doc_count))
+          .range([height, 0]);
 
-      var bars = svg.selectAll('g')
-          .data($scope.chartsData);
+      var xAxis = d3.svg.axis()
+          .scale(xScale)
+          .orient('bottom');
 
       var yAxis = d3.svg.axis()
-          .scale(hScale)
+          .scale(yScale)
           .orient('left');
+
+      svg.select('#xAxis')
+          .remove();
+
+      svg.append('g')
+          .attr('id', 'xAxis')
+          .attr('transform', 'translate('+padding.left+', '+(height+padding.top)+')')
+          .attr("class", "axis")
+          .call(xAxis);
 
       svg.select('#yAxis')
           .remove();
 
       svg.append('g')
           .attr('id', 'yAxis')
-          .attr('transform', 'translate(30,0)')
+          .attr('transform', 'translate('+padding.left+', '+padding.top+')')
+          .attr("class", "axis")
           .call(yAxis);
+
+      var barG = svg.append('g')
+          .attr('transform', 'translate('+padding.left+', '+padding.top+')');
+
+      var bars = barG.selectAll('g')
+          .data(data);
 
       // enter
       bars.enter()
@@ -77,16 +105,16 @@
           .append('rect')
           .attr('fill', barBgColor)
           .attr('x', (d, i) => xScale(i))
-          .attr('y', (d) => height - hScale(d.doc_count))
+          .attr('y', (d) => yScale(d.doc_count))
           .attr('width', barWidth)
-          .attr('height', (d) => hScale(d.doc_count));
+          .attr('height', (d) => yScale(d.doc_count));
 
       // update
       bars.select('rect')
           .attr('x', (d, i) => xScale(i))
-          .attr('y', (d) => height - hScale(d.doc_count))
+          .attr('y', (d) => yScale(d.doc_count))
           .attr('width', barWidth)
-          .attr('height', (d) => hScale(d.doc_count));
+          .attr('height', (d) => height - yScale(d.doc_count));
 
       // exit
       bars.exit()
