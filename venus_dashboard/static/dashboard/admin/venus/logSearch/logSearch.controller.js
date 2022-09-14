@@ -93,7 +93,11 @@
           .attr("class", "axis")
           .call(yAxis);
 
+      svg.select('#bar-container')
+          .remove();
+
       var barContainer = svg.append('g')
+          .attr('id', 'bar-container')
           .attr('transform', 'translate('+padding.left+', '+padding.top+')');
 
       var bars = barContainer.selectAll('g')
