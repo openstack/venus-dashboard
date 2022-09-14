@@ -54,13 +54,13 @@
 
       var width = svg.node().getBoundingClientRect().width - padding.left - padding.right,
           height = svg.node().getBoundingClientRect().height - padding.top - padding.bottom,
-          barHotZoneWidth = width / data.length,
+          barHotZoneWidth = data.length != 0 ? width / data.length : 0,
           barHotZoneHighlight = '#ddd',
           barWidth = barHotZoneWidth - barGap,
           barBgColor = '#007ede';
 
       var xScale = d3.scale.linear()
-          .domain([0, data.length - 1])
+          .domain([0, data.length])
           .range([0, width]);
 
       var yScale = d3.scale.linear()
