@@ -41,4 +41,5 @@ class Logs(generic.View):
         end_time = request.GET.get('end_time', 0)
         page_size = request.GET.get('page_size', 20)
         page_num = request.GET.get('page_num', 1)
-        return venus.logs(request, start_time, end_time, page_size, page_num)
+        module_name = request.GET.get('module_name', 1)
+        return venus.logs(request, start_time, end_time, page_size, page_num, module_name)

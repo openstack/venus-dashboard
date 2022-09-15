@@ -13,6 +13,7 @@
       start_time: new Date(),
       end_time: new Date(),
       condition: 'module_name',
+      condition_value: '',
       page_size: horizon.cookies.get('API_RESULT_PAGE_SIZE') || 20,
       page_num: 1
     };
@@ -25,8 +26,12 @@
         start_time: $scope.model.start_time.getTime() / 1000,
         end_time: $scope.model.end_time.getTime() / 1000,
         page_size: $scope.model.page_size,
-        page_num: $scope.model.page_num
+        page_num: $scope.model.page_num,
+        module_name: ''
       };
+      if ($scope.model.condition == 'module_name') {
+        config.module_name = $scope.model.condition_value;
+      }
       venusSrv.getLogs(config).then(function (res) {
         $scope.tableData = [];
         if (res.data.hasOwnProperty('data')) {
