@@ -41,8 +41,9 @@ def log_storage_days(request):
     return venusclient(request).config.get_days()
 
 
-def logs(request, start_time, end_time, page_size, page_num):
+def logs(request, start_time, end_time, page_size, page_num, module_name):
     return venusclient(request).search.get_log(start_time=start_time,
                                                end_time=end_time,
                                                page_size=page_size,
-                                               page_num=page_num)
+                                               page_num=page_num,
+                                               module_name=module_name)
