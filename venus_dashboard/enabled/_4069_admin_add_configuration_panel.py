@@ -6,7 +6,7 @@ PANEL_DASHBOARD = 'admin'
 PANEL_GROUP = 'venus'
 
 # Python panel class of the PANEL to be added.
-ADD_PANEL = 'venus_dashboard.storage_days.panel.Configuration'
+ADD_PANEL = 'venus_dashboard.configuration.panel.Configuration'
 
 ADD_INSTALLED_APPS = ['venus_dashboard.configuration']
 
