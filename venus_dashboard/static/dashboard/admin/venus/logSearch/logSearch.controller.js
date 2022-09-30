@@ -28,13 +28,21 @@
         page_size: $scope.model.page_size,
         page_num: $scope.model.page_num,
         module_name: '',
-        host_name: ''
+        host_name: '',
+        program_name: '',
+        level: ''
       };
       if ($scope.model.condition == 'module_name') {
         config.module_name = $scope.model.condition_value;
       }
       if ($scope.model.condition == 'host_name') {
         config.host_name = $scope.model.condition_value;
+      }
+      if ($scope.model.condition == 'program_name') {
+        config.program_name = $scope.model.condition_value;
+      }
+      if ($scope.model.condition == 'level') {
+        config.level = $scope.model.condition_value;
       }
       venusSrv.getLogs(config).then(function (res) {
         $scope.tableData = [];
