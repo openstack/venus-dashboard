@@ -14,6 +14,7 @@
 
 from django.conf.urls import url
 
+from venus_dashboard.api import venus_rest_api # noqa
 from venus_dashboard.configuration import views
 
 urlpatterns = [
