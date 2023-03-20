@@ -32,9 +32,20 @@
           });
     }
 
+    function getAnalysis(config) {
+      config = config || {};
+      var url = '/api/venus/search/analyse/logs';
+
+      return apiService.get(url, config)
+          .catch(function () {
+            toastService.add('error', gettext('Unable to fetch the venus logs.'));
+          });
+    }
+
     var service = {
       getLogStorageDays: getLogStorageDays,
-      getLogs: getLogs
+      getLogs: getLogs,
+      getAnalysis: getAnalysis
     };
 
     return service;
