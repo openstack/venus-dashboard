@@ -38,10 +38,23 @@
           });
       }
     }
+    function getAnalysis(config) {
+      config = {params: config};
+      if (venusAPI) {
+        return venusAPI.getAnalysis(config)
+          .then(function (data) {
+            return data;
+          })
+          .catch(function (err) {
+            console.error(err);
+          });
+      }
+    }
 
     return {
       getLogStorageDays: getLogStorageDays,
-      getLogs: getLogs
+      getLogs: getLogs,
+      getAnalysis: getAnalysis
     };
   }
 })();
