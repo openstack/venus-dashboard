@@ -13,9 +13,7 @@
       start_time: new Date(),
       end_time: new Date(),
       condition: 'module_name',
-      condition_value: '',
-      page_size: horizon.cookies.get('API_RESULT_PAGE_SIZE') || 20,
-      page_num: 1
+      condition_value: ''
     };
     $scope.total = 0;
     $scope.tableData = [];
@@ -25,8 +23,6 @@
       var config = {
         start_time: $scope.model.start_time.getTime() / 1000,
         end_time: $scope.model.end_time.getTime() / 1000,
-        page_size: $scope.model.page_size,
-        page_num: $scope.model.page_num,
         module_name: '',
         host_name: '',
         program_name: '',
