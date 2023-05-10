@@ -34,7 +34,7 @@
 
     function getAnalysis(config) {
       config = config || {};
-      var url = '/api/venus/search/analyse/logs';
+      var url = '/api/venus/v1/search/analyse/logs';
 
       return apiService.get(url, config)
           .catch(function () {
