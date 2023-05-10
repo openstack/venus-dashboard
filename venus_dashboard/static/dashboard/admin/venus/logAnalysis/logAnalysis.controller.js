@@ -26,7 +26,8 @@
         module_name: '',
         host_name: '',
         program_name: '',
-        level: ''
+        level: '',
+        group_name: 'program_name'
       };
       if ($scope.model.condition == 'module_name') {
         config.module_name = $scope.model.condition_value;
