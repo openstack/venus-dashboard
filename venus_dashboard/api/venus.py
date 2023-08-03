@@ -60,5 +60,4 @@ def analysis(request, start_time, end_time, module_name, host_name,
                                                     module_name=module_name,
                                                     host_name=host_name,
                                                     program_name=program_name,
-                                                    group_name=group_name,
                                                     level=level)
