@@ -53,8 +53,8 @@ def logs(request, start_time, end_time, page_size, page_num, module_name,
                                                level=level)
 
 
-def analysis(request, start_time, end_time, module_name, host_name,
-             program_name, group_name, level):
+def analysis(request, start_time, module_name, host_name,
+             end_time, program_name, group_name, level):
     return venusclient(request).analyse.analyse_log(start_time=start_time,
                                                     end_time=end_time,
                                                     module_name=module_name,
