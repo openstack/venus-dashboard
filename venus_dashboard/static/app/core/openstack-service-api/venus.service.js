@@ -41,11 +41,21 @@
             toastService.add('error', gettext('Unable to fetch the venus logs.'));
           });
     }
+    function getError(config) {
+      config = config || {};
+      var url = '/api/venus/v1/search/typical/logs';
+
+      return apiService.get(url, config)
+          .catch(function () {
+            toastService.add('error', gettext('Unable to fetch the venus logs.'));
+          });
+    }
 
     var service = {
       getLogStorageDays: getLogStorageDays,
       getLogs: getLogs,
-      getAnalysis: getAnalysis
+      getAnalysis: getAnalysis,
+      getError: getError
     };
 
     return service;
