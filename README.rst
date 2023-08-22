@@ -2,7 +2,12 @@
 Venus Dashboard
 ===============
 
-Provide a dashboard for OpenStack Log Management Service (venus).
+.. image:: https://governance.openstack.org/tc/badges/venus-dashboard.svg
+    :target: https://governance.openstack.org/tc/reference/tags/index.html
+
+.. Change things from this point on
+
+Venus Dashboard provides a dashboard for OpenStack Log Management Service (venus).
 
 About Venus
 -----------
@@ -20,4 +25,3 @@ the level of platform management.
 Additionally, this project plans to use machine learning algorithms to
 quickly locate IT failures and root causes, and improve operation and
 maintenance efficiency.
-
