@@ -61,3 +61,9 @@ def analysis(request, start_time, module_name, host_name,
                                                     host_name=host_name,
                                                     program_name=program_name,
                                                     level=level)
+
+
+def typical(request, start_time, end_time, type):
+    return venusclient(request).analyse.typical_log(start_time=start_time,
+                                                    end_time=end_time,
+                                                    type=type)

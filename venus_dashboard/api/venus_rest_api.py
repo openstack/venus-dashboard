@@ -63,3 +63,15 @@ class Analysis(generic.View):
         level = request.GET.get('level', '')
         return venus.analysis(request, start_time, module_name, host_name,
                               end_time, program_name, group_name, level)
+
+
+@urls.register
+class Error(generic.View):
+    url_regex = r'venus/v1/search/typical/logs$'
+
+    @rest_utils.ajax()
+    def get(self, request):
+        start_time = request.GET.get('start_time', 0)
+        end_time = request.GET.get('end_time', 0)
+        type = request.GET.get('type', '')
+        return venus.typical(request, start_time, end_time, type)
