@@ -26,7 +26,12 @@
       'componentList': [],
       'chartData': []
     };
-    $scope.getChart1 = function () {
+    $scope.getData = function() {
+      $scope.getChart1();
+      $scope.getChart2();
+      $scope.getChart3();
+    };
+      $scope.getChart1 = function () {
       var config1 = {
         start_time: $scope.model.start_time.getTime() / 1000,
         end_time: $scope.model.end_time.getTime() / 1000,
@@ -35,9 +40,9 @@
       venusSrv.getError(config1).then(function (res) {
         if (res.data.stats.length()>0) {
           res.data.stats.forEach(i => {
-            $scope.chart1.componentList.push(i.key)
+            $scope.chart1.componentList.push(i)
           });
-          $scope.chart1.componentList.unshift('全部')
+          $scope.chart1.componentList.unshift("all");
           $scope.chart1.chartData = res.data.stats;
         }
         $scope.updateChart('svg1');
@@ -76,8 +81,7 @@
         }
         $scope.updateChart('svg3');
       });
-    }
-
+    };
     $scope.updateChart = function (val) {
       var data = $scope.chartsData;
 
@@ -185,11 +189,8 @@
       start_time.setTime(end_time.getTime() - 24 * 60 * 60 * 1000);
       $scope.model.start_time = start_time;
       $scope.model.end_time = end_time;
-
-      $scope.getChart1();
-      $scope.getChart2();
-      $scope.getChart3();
-    }
+      $scope.getData();
+    };
 
     init();
   }
