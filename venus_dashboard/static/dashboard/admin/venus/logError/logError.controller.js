@@ -32,18 +32,24 @@
       $scope.getChart3();
     };
       $scope.getChart1 = function () {
+        debugger
       var config1 = {
         start_time: $scope.model.start_time.getTime() / 1000,
         end_time: $scope.model.end_time.getTime() / 1000,
         type: 'error_stats'
       };
       venusSrv.getError(config1).then(function (res) {
-        if (res.data.stats.length()>0) {
-          res.data.stats.forEach(i => {
-            $scope.chart1.componentList.push(i)
+        if (res.data.data.stats.length>0) {
+          res.data.data.stats.forEach(i => {
+            let keyArray1 = i.key.split('/');
+            $scope.chart1.componentList.push(keyArray1[3])
           });
-          $scope.chart1.componentList.unshift("all");
-          $scope.chart1.chartData = res.data.stats;
+          //
+          var obj1 = document.getElementById("selectPicker1");
+          for (var i=0;i<$scope.chart1.componentList.length;i++) {
+            obj1.add(new Option($scope.chart1.componentList[i],$scope.chart1.componentList[i]));
+          }
+          $scope.chart1.chartData = res.data.data && res.data.data.stats[0].count;
         }
         $scope.updateChart('svg1');
       });
@@ -55,12 +61,17 @@
         type: 'rabbitmq_error_stats'
       };
       venusSrv.getError(config2).then(function (res) {
-        if (res.data.stats.length()>0) {
-          res.data.stats.forEach(i => {
-            $scope.chart2.componentList.push(i.key)
+        if (res.data.data.stats.length>0) {
+          res.data.data.stats.forEach(i => {
+            let keyArray2 = i.key.split('/');
+            $scope.chart2.componentList.push(keyArray2[3])
           });
-          $scope.chart2.componentList.unshift('全部')
-          $scope.chart2.chartData = res.data.stats;
+          //
+          var obj2 = document.getElementById("selectPicker2");
+          for (var j=0;i<$scope.chart2.componentList.length;i++) {
+            obj2.add(new Option($scope.chart2.componentList[j], $scope.chart2.componentList[j]));
+          }
+          $scope.chart2.chartData = res.data.data && res.data.data.stats[0].count;
         }
         $scope.updateChart('svg2');
       });
@@ -72,12 +83,17 @@
         type: 'mysql_error_stats'
       };
       venusSrv.getError(config3).then(function (res) {
-        if (res.data.stats.length()>0) {
-          res.data.stats.forEach(i => {
-            $scope.chart3.componentList.push(i.key)
+        if (res.data.data.stats.length>0) {
+          res.data.data.stats.forEach(i => {
+            let keyArray3 = i.key.split('/');
+            $scope.chart3.componentList.push(keyArray3[3])
           });
-          $scope.chart3.componentList.unshift('全部')
-          $scope.chart3.chartData = res.data.stats;
+          //
+          var obj3 = document.getElementById("selectPicker3");
+          for (var k=0;i<$scope.chart3.componentList.length;i++) {
+            obj3.add(new Option($scope.chart3.componentList[k], $scope.chart3.componentList[k]));
+          }
+          $scope.chart3.chartData = res.data.data && res.data.data.stats[0].count;
         }
         $scope.updateChart('svg3');
       });
