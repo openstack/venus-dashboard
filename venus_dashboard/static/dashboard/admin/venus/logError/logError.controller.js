@@ -32,7 +32,6 @@
       $scope.getChart3();
     };
       $scope.getChart1 = function () {
-        debugger
       var config1 = {
         start_time: $scope.model.start_time.getTime() / 1000,
         end_time: $scope.model.end_time.getTime() / 1000,
