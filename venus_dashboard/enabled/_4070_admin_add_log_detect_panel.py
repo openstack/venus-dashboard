@@ -27,7 +27,7 @@ PANEL_GROUP = 'venus'
 # Python panel class of the PANEL to be added.
 ADD_PANEL = 'venus_dashboard.log_detect.panel.LogDetect'
 
-ADD_INSTALLED_APPS = ['venus_dashboard', 'venus_dashboard.log_detect']
+ADD_INSTALLED_APPS = ['venus_dashboard.log_detect']
 
 ADD_ANGULAR_MODULES = ['horizon.dashboard.admin.venus']
 
