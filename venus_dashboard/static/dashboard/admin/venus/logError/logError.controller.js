@@ -38,19 +38,27 @@
         type: 'error_stats'
       };
       venusSrv.getError(config1).then(function (res) {
+        $scope.chart1.componentList = [];
         if (res.data.data.stats.length>0) {
           res.data.data.stats.forEach(i => {
             let keyArray1 = i.key.split('/');
+            i.keyValue = keyArray1[3];
             $scope.chart1.componentList.push(keyArray1[3])
           });
           //
           var obj1 = document.getElementById("selectPicker1");
+          obj1.innerHTML = '';
           for (var i=0;i<$scope.chart1.componentList.length;i++) {
             obj1.add(new Option($scope.chart1.componentList[i],$scope.chart1.componentList[i]));
           }
           $scope.chart1.chartData = res.data.data && res.data.data.stats[0].count;
         }
-        $scope.updateChart('svg1');
+        $scope.updateChart('svg1', $scope.chart1.chartData);
+        document.getElementById('selectPicker1').addEventListener('change', function (){
+          let checkOption = $("#selectPicker1").val();
+          let checkChart = res.data.data && res.data.data.stats.find(item => item.keyValue == checkOption);
+          $scope.updateChart('svg1', checkChart.count);
+        });
       });
     };
     $scope.getChart2 = function () {
@@ -60,6 +68,7 @@
         type: 'rabbitmq_error_stats'
       };
       venusSrv.getError(config2).then(function (res) {
+        $scope.chart2.componentList = [];
         if (res.data.data.stats.length>0) {
           res.data.data.stats.forEach(i => {
             let keyArray2 = i.key.split('/');
@@ -67,12 +76,18 @@
           });
           //
           var obj2 = document.getElementById("selectPicker2");
+          obj2.innerHTML = '';
           for (var j=0;i<$scope.chart2.componentList.length;i++) {
             obj2.add(new Option($scope.chart2.componentList[j], $scope.chart2.componentList[j]));
           }
           $scope.chart2.chartData = res.data.data && res.data.data.stats[0].count;
         }
-        $scope.updateChart('svg2');
+        $scope.updateChart('svg2', $scope.chart2.chartData);
+        document.getElementById('selectPicker2').addEventListener('change', function (){
+          let checkOption = $("#selectPicker2").val();
+          let checkChart = res.data.data && res.data.data.stats.find(item => item.keyValue == checkOption);
+          $scope.updateChart('svg2', checkChart.count);
+        });
       });
     };
     $scope.getChart3 = function () {
@@ -82,6 +97,7 @@
         type: 'mysql_error_stats'
       };
       venusSrv.getError(config3).then(function (res) {
+        $scope.chart3.componentList = [];
         if (res.data.data.stats.length>0) {
           res.data.data.stats.forEach(i => {
             let keyArray3 = i.key.split('/');
@@ -89,16 +105,22 @@
           });
           //
           var obj3 = document.getElementById("selectPicker3");
+          obj3.innerHTML = '';
           for (var k=0;i<$scope.chart3.componentList.length;i++) {
             obj3.add(new Option($scope.chart3.componentList[k], $scope.chart3.componentList[k]));
           }
           $scope.chart3.chartData = res.data.data && res.data.data.stats[0].count;
         }
-        $scope.updateChart('svg3');
+        $scope.updateChart('svg3', $scope.chart3.chartData);
+        document.getElementById('selectPicker3').addEventListener('change', function (){
+          let checkOption = $("#selectPicker3").val();
+          let checkChart = res.data.data && res.data.data.stats.find(item => item.keyValue == checkOption);
+          $scope.updateChart('svg3', checkChart.count);
+        });
       });
     };
-    $scope.updateChart = function (val) {
-      var data = $scope.chartsData;
+    $scope.updateChart = function (val, chartData) {
+      var data = chartData;
 
       var padding = {
         top: 50,
